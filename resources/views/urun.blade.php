@@ -1,11 +1,11 @@
 @extends('layouts.master')
-@section('title','Kategori')
+@section('title',$urun->urun_adi)
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="#">Anasayfa</a></li>
-            <li><a href="#">Kategori</a></li>
-            <li class="active">Kategori</li>
+            <li><a href="{{route('kategori',$kategori->slug)}}">{{$kategori->kategori_adi}}</a></li>
+            <li class="active">{{$urun->urun_adi}}</li>
         </ol>
         <div class="bg-content">
             <div class="row">
@@ -25,15 +25,16 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <h1>Ürün adı</h1>
-                    <p class="price">129 ₺</p>
+                    <h1>{{$urun->urun_adi}}</h1>
+                    <p class="price">{{$urun->fiyat}}</p>
                     <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
                 </div>
             </div>
 
             <div>
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#t1" data-toggle="tab">Ürün Açıklaması</a></li>
+                    <li role="presentation" class="active"><a href="#t1" data-toggle="tab">{{$urun->urun_aciklama}}</a>
+                    </li>
                     <li role="presentation"><a href="#t2" data-toggle="tab">Yorumlar</a></li>
                 </ul>
                 <div class="tab-content">
@@ -44,4 +45,4 @@
 
         </div>
     </div>
-    @endsection
+@endsection

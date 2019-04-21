@@ -16,7 +16,7 @@
             <form class="navbar-form navbar-left"  method="Post" action="{{route('urun_ara')}}">
                 {{csrf_field()}}
                 <div class="input-group">
-                    <input type="text" id="navbar-search" name="aranan" class="form-control" placeholder="Ara">
+                    <input type="text" id="navbar-search" name="aranan" class="form-control" value="{{old('aranan')}}" placeholder="Ara">
                     <span class="input-group-btn">
                             <button type="submit" class="btn btn-default">
                                 <i class="fa fa-search"></i>

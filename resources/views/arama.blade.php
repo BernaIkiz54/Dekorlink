@@ -25,7 +25,8 @@
                         <p class="price">{{$urun->fiyati}} </p>
                     </div>
                 @endforeach
-            </>
+            </div>
+            {{$urunler->appends(['aranan'=>old('aranan')])->links()}}
         </div>
     </div>
 @endsection

@@ -21,3 +21,9 @@ Route::get('/odeme', 'OdemeController@index')->name('odeme');
 Route::get('/siparisler', 'SiparisController@index')->name('siparisler');
 Route::get('/siparisler/{id}', 'SiparisController@detay')->name('siparis');
 Route::get('/siparisler/{id}', 'SiparisController@detay')->name('siparis');
+Route::group(['prefix'=>'kullanici'],function(){
+    Route::get ('/oturumac','UyeController@giris_form')->name('kullanici.oturumac');
+    Route::post('/oturumac','UyeController@giris');
+    Route::get ('/kaydol','UyeController@kaydol_form')->name('kullanici.kaydol');
+    Route::post ('/kaydol','UyeController@kaydol');
+});

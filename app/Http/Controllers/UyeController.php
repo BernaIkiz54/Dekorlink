@@ -20,7 +20,7 @@ class UyeController extends Controller
 
     public function giris()
     {
-        Uyeler::table('uyeler', function ($table)  {
+
 
         $this->validate(request(),[
             'email'=>'required|email',
@@ -35,11 +35,16 @@ class UyeController extends Controller
             $errors=['email'=>'Hatalı giriş'];
             return back()->withErrors($errors);
           }
-        });
+
     }
 
     public function kaydol()
     {
+        $this->validate(request(),[
+            'adsoyad'=>'required|min:5|max:60',
+            'email'=>'required|email|unique:uyeler',
+            'sifre'=>'required|confirmed|min:5|max:15'
+        ]);
         $uye = Uyeler::create([
             'ad_soyad' => request('adsoyad'),
             'email' => request('email'),
@@ -50,6 +55,12 @@ class UyeController extends Controller
 
         ]);
         auth()->login($uye);
+        return redirect()->route('anasayfa');
+    }
+    public function oturumuKapat(){
+        auth()->logout();
+        request()->session()->flush();
+        request()->session()->regenerate();
         return redirect()->route('anasayfa');
     }
 }

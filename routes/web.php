@@ -26,4 +26,5 @@ Route::group(['prefix'=>'kullanici'],function(){
     Route::post('/oturumac','UyeController@giris');
     Route::get ('/kaydol','UyeController@kaydol_form')->name('kullanici.kaydol');
     Route::post ('/kaydol','UyeController@kaydol');
+    Route::post('/oturumukapat','UyeController@oturumuKapat')->name('kullanici.oturumukapat');
 });

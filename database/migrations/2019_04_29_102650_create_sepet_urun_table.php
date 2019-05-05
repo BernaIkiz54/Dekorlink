@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUyelerTable extends Migration
+class CreateSepetUrunTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateUyelerTable extends Migration
      */
     public function up()
     {
-        Schema::create('uyeler', function (Blueprint $table) {
+        Schema::create('sepet_urun', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ad_soyad',60);
-            $table->string('email',45)->unique();
-            $table->string('sifre',150);
-            $table->string('TelNo',15);
-            $table->string('aktivasyon_anahtari',60)->nullable();
-            $table->boolean('aktif_mi')->default(0);
-            $table->rememberToken();
-            $table->timestamp('olusturma_tarihi')->default(now());
+            $table->integer('sepet_id')->unsigned();
+            $table->integer('urun_id')->unsigned();
+            $table->integer('adet');
+            $table->decimal('tutar',5,2);
+            $table->string('durum',30);
             $table->timestamp('guncelleme_tarihi')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
             $table->timestamp('silinme_tarihi')->nullable();
+            $table->foreign('sepet_id')->references('id')->on('sepet')->onDelete('cascade');
+            $table->foreign('urun_id')->references('id')->on('urun')->onDelete('cascade');
 
         });
     }
@@ -36,6 +35,6 @@ class CreateUyelerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uyeler');
+        Schema::dropIfExists('sepet_urun');
     }
 }

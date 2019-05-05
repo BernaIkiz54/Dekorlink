@@ -3,7 +3,8 @@
 namespace App\models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class Uyeler extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Uyeler extends Authenticatable
 {
     use SoftDeletes;
     protected $table="uyeler";
@@ -12,7 +13,7 @@ class Uyeler extends Model
     ];
 
     protected $hidden = [
-        'sifre', 'aktivasyon_anahtari'
+       'uyeID','sifre', 'aktivasyon_anahtari'
     ];
     const CREATED_AT = 'olusturma_tarihi';
     const UPDATED_AT = 'guncelleme_tarihi';
@@ -21,4 +22,7 @@ class Uyeler extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function getAuthPassword(){
+        return $this->sifre;
+    }
 }

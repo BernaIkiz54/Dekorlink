@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('title','Ödeme')
+@section('content')
 <div class="container">
     <div class="bg-content">
         <h2>Ödeme</h2>

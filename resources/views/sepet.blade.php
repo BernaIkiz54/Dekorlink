@@ -26,12 +26,19 @@
                                     {{$urunCartItem->name}}
                                 </a>
 
+
+                                <form action="{{route('sepet.kaldir',$urunCartItem->rowId)}}" method="post">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                    <input type="submit" class="btn btn-danger btn-xs" value="Sepetten Kaldır">
+                                </form>
+
                             </td>
                             <td>{{$urunCartItem->price}} TL</td>
                             <td>
-                                <a href="#" class="btn btn-xs btn-default">-</a>
+                                <a href="#" class="btn btn-xs btn-default urun-adet-azalt" data-id="{{$urunCartItem->rowId}}" data-adet="{{$urunCartItem->gty-1}}">-</a>
                                 <span style="padding: 10px 20px">{{$urunCartItem->qty}}</span>
-                                <a href="#" class="btn btn-xs btn-default">+</a>
+                                <a href="#" class="btn btn-xs btn-default urun-adet-arttir data-id="{{$urunCartItem->rowId}}" data-adet="{{$urunCartItem->gty+1}}"">+</a>
                             </td>
 
                             <td class="text-right">
@@ -53,7 +60,11 @@
                     </tr>
                 </table>
                 <div>
-                    <a href="#" class="btn btn-info pull-left">Sepeti Boşalt</a>
+                    <form action="{{route('sepet.bosalt')}}" method="post">
+                        {{csrf_field()}}
+                        {{method_field('DELETE')}}
+                        <input type="submit" class="btn btn-info pull-left" value="Sepet, Boşalt">
+                    </form>
                     <a href="#" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
                 </div>
             @else
